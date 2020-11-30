@@ -141,4 +141,12 @@ const sortByLength = (strs) => strs.sort((a, b) => a.length === b.length ? 0 : a
 ```
 
 #### Logic:
-...
+Looking into Array.sort() we see that just using that on array of strings sorts successfully but the default implementation will swap positions of strings alphabetically meaning that it will break this questions condition of 'If twos strings have the same length, their relative order must be the same in the intial array.'
+Meaning that we can still use Array.sort() but pass in a callback compare function that takes the next two
+elements out of the array and compares them sorting the two elements in a particular order depending on if your
+callback returns 0, a # greater than 1 or a # less than 1. ([See docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort))
+
+My sort function uses a double ternary expression but is the same as an if/ else if. Here are the cases
+    1) a === b return 0 meaning the length is the same don't change original positions
+    2) a > b returns 1 meaning a is bigger and b is placed first 
+    3) a < b returns -1 meaning b is bigger than a and is placed first
