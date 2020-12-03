@@ -4,14 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine",
-    "start": "nodemon main.js"
+    "test": "jasmine"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jasmine": "^3.6.3",
-    "nodemon": "^2.0.6"
+    "jasmine": "^3.6.3"
   }
 }

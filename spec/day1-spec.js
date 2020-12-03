@@ -10,7 +10,7 @@ describe('candies()', () => {
 		const result = candies(children, candy);
 
 		// log
-		console.log('result: ', result);
+		console.log(`Day 1 result: candies(${children}, ${candy}) =`, result);
 
 		// assert
 		expect(result).toBe(66);
