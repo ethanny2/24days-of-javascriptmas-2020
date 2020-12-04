@@ -13,6 +13,7 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 1](#day-1)
 - [Day 2](#day-2)
 - [Day 3](#day-3)
+- [Day 4](#day-4)
 
 
 ## Day 1
@@ -84,6 +85,23 @@ we usually need some type of loop (while or for) or some kind of recursive solut
 I stuck with the former and created a do-while loop; the only difference a do-while and while is the **do-while loop runs the body of the loop at least once**. 
  1) In the "do" block I initially slice the array using the starting position (pos) and the variable lengthCut which is intially equal to size. 
  2) That sliced segment gets pushed into the array we wish to return
- 3) Afterwards more the pos variable by the size to account for segments you already sliced off.
- 4) Similarly length cut increases by the size as well; note the second argument of slice() is not the amount to cut off but rather the endIndex. To correctly get both the new start position and endIndex they must be incremented by size to 
- 5) After all these calculations in the do block of the loop the while checks if the next calculated (using the newly incremeneted pos and lengthCut) segment is returned as [] meaning we are at the end of the array and cannot possibly slice anymore.
+ 3) Afterwards increment the pos variable by the size to account for segments you already sliced off.
+ 4) Similarly, length cut is incremented by the size as well; note the second argument of slice() is not the amount to cut off but rather the endIndex. To correctly get both the new start position and endIndex they must be incremented by size to 
+ 5) After all these calculations in the do block of the loop the while portion checks if the next calculated (using the newly incremeneted pos and lengthCut) segment is returned as [] meaning we are at the end of the array and cannot possibly slice anymore.
+
+
+## Day 4
+
+![Day4 Question](https://i.gyazo.com/969c80df82b610b69303aeb3b79c8bd8.png)
+
+
+#### Answer:
+
+```
+const centuryFromYear = (year) => year %  100 === 0 ? Math.floor(year/100) + 0 :  Math.floor(year/100) + 1;
+
+```
+
+#### Logic:
+A century is loosely defined as a period of 100 years (with some edge cases on the end years ). Generally to calculate a century you just need (year / 100) + 1. For the edge cases like 1800, 1700 etc.. we don't need to add + 1.
+All the afforementioned dates indicate a new century is about to begin; we can determine this because all the edge case years are divisible by 100.

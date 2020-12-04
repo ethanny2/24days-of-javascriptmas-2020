@@ -56,13 +56,26 @@ exports.chunkyMonkey = (values, size) => {
     let lengthCut = size;
     let segment;
     do {   
-        segment = values.slice(pos, lengthCut); //If done this is empty
+        segment = values.slice(pos, lengthCut); 
         retArr.push(segment);
         pos += size;
         lengthCut += size;
     } 
-    while ( values.slice(pos, lengthCut).length > 0);
+    while ( values.slice(pos, lengthCut).length > 0); //If done this is empty
     return retArr;
 }
 
+/* 
+    #4: 
+    Given a year, return the century it is in. The first century spans from
+    the year 1 up to and including tthe year 100, the second century is
+    from the year 101 up to and including the year 200.
 
+    Ex: year = 1905 centuryFromYear(year)  returns 20 (th century)
+    Ex#2: year = 1700 centuryFromYear(year) returns 17 (th century)
+
+    1- 100 (1st) 101- 200 (2nd)
+    * Notice that each edge case (1700's is 17th century) is a number
+    always divisible by 100
+*/
+exports.centuryFromYear = (year) => year %  100 === 0 ? Math.floor(year/100) + 0 :  Math.floor(year/100) + 1;
