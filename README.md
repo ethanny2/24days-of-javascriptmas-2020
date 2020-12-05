@@ -14,6 +14,7 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 2](#day-2)
 - [Day 3](#day-3)
 - [Day 4](#day-4)
+- [Day 5](#day-5)
 
 
 ## Day 1
@@ -105,3 +106,23 @@ const centuryFromYear = (year) => year %  100 === 0 ? Math.floor(year/100) + 0 :
 #### Logic:
 A century is loosely defined as a period of 100 years (with some edge cases on the end years ). Generally to calculate a century you just need (year / 100) + 1. For the edge cases like 1800, 1700 etc.. we don't need to add + 1.
 All the afforementioned dates indicate a new century is about to begin; we can determine this because all the edge case years are divisible by 100.
+
+
+## Day 5
+
+![Day5 Question](https://i.gyazo.com/34b4545e0355f6a51064629a2cf8292b.png)
+
+
+#### Answer:
+
+```
+const reverseAString = (str) => str.split('').reduce((acc, nextChar) => nextChar + acc, '');
+```
+
+#### Logic:
+There are many different ways to reverse a string including a reverse for-loop, converting the string to an array then
+using the Array.reverse() method and then converting back.
+I used reduce as a challenge; here's the explaination
+    1) The function takes in a string a returns the result of the inputted string split into an array of characters and then reduced.
+    2) reduce() accumlates a value and iterates over an array doing something (adding subtracting etc...) by invoking the callback you provided to reduce(). The value returned from your callback is the new value feed in as the first argument of your callback in the next iteration of the loop
+    3) In shorter terms we start the reduce with an empty string '' loop over all the chars of the string where for each we append the next character ahead of the previous characters resulting in a reversed string

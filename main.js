@@ -1,4 +1,3 @@
-
 /* 
     #1: 
     n children have got m pieces of candy. They each want to eat
@@ -9,9 +8,9 @@
     Note: Individual pieces of candy cannot be split
 */
 exports.candies = (children, candy) => {
-    const amountEatenEach = Math.floor(candy / children);
-    return amountEatenEach * children;
-}
+	const amountEatenEach = Math.floor(candy / children);
+	return amountEatenEach * children;
+};
 
 /* 
     #2: 
@@ -24,13 +23,13 @@ exports.candies = (children, candy) => {
         depositProfit(deposit, rate, threshold)  returns 3 (years)
 */
 exports.depositProfit = (deposit, rate, threshold) => {
-    let years = 0;
-    while(deposit < threshold){
-        deposit += deposit * (rate/100);
-        years++;
-    }
-    return years;
-}
+	let years = 0;
+	while (deposit < threshold) {
+		deposit += deposit * (rate / 100);
+		years++;
+	}
+	return years;
+};
 
 /* 
     #3:
@@ -51,19 +50,18 @@ exports.depositProfit = (deposit, rate, threshold) => {
     *slicing past the start index yields empty array  
 */
 exports.chunkyMonkey = (values, size) => {
-    let pos = 0;
-    const retArr = [];
-    let lengthCut = size;
-    let segment;
-    do {   
-        segment = values.slice(pos, lengthCut); 
-        retArr.push(segment);
-        pos += size;
-        lengthCut += size;
-    } 
-    while ( values.slice(pos, lengthCut).length > 0); //If done this is empty
-    return retArr;
-}
+	let pos = 0;
+	const retArr = [];
+	let lengthCut = size;
+	let segment;
+	do {
+		segment = values.slice(pos, lengthCut);
+		retArr.push(segment);
+		pos += size;
+		lengthCut += size;
+	} while (values.slice(pos, lengthCut).length > 0); //If done this is empty
+	return retArr;
+};
 
 /* 
     #4: 
@@ -78,4 +76,15 @@ exports.chunkyMonkey = (values, size) => {
     * Notice that each edge case (1700's is 17th century) is a number
     always divisible by 100
 */
-exports.centuryFromYear = (year) => year %  100 === 0 ? Math.floor(year/100) + 0 :  Math.floor(year/100) + 1;
+exports.centuryFromYear = (year) =>
+	year % 100 === 0 ? Math.floor(year / 100) + 0 : Math.floor(year / 100) + 1;
+
+/* 
+    #5: 
+    Reverse the provided string. You may need to turn the string into an array
+    before you can reverse it. Your result must be a string
+
+    Ex: reverseAString('Howdy') returns ydwoH
+*/
+exports.reverseAString = (str) =>
+	str.split('').reduce((acc, nextChar) => nextChar + acc, '');
