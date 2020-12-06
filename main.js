@@ -88,3 +88,11 @@ exports.centuryFromYear = (year) =>
 */
 exports.reverseAString = (str) =>
 	str.split('').reduce((acc, nextChar) => nextChar + acc, '');
+
+
+/* 
+    #6: 
+    Given an array of strings, sort them in the order of increasing lengths. If twos strings
+    have the same length, their relative order must be the same in the intial array.
+*/
+exports.sortByLength = (strs) => strs.sort((a, b) => a.length === b.length ? 0 : a.length > b.length ? 1 : -1);

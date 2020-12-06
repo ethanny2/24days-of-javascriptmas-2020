@@ -126,3 +126,19 @@ I used reduce as a challenge; here's the explaination
     1) The function takes in a string a returns the result of the inputted string split into an array of characters and then reduced.
     2) reduce() accumlates a value and iterates over an array doing something (adding subtracting etc...) by invoking the callback you provided to reduce(). The value returned from your callback is the new value feed in as the first argument of your callback in the next iteration of the loop
     3) In shorter terms we start the reduce with an empty string '' loop over all the chars of the string where for each we append the next character ahead of the previous characters resulting in a reversed string
+
+
+## Day 6
+
+![Day6 Question](https://i.gyazo.com/20052e60456798f2913b58a1d4e3c1db.png)
+
+
+#### Answer:
+
+```
+const sortByLength = (strs) => strs.sort((a, b) => a.length === b.length ? 0 : a.length > b.length ? 1 : -1);
+
+```
+
+#### Logic:
+...
