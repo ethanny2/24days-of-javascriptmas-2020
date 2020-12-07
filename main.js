@@ -89,10 +89,30 @@ exports.centuryFromYear = (year) =>
 exports.reverseAString = (str) =>
 	str.split('').reduce((acc, nextChar) => nextChar + acc, '');
 
-
 /* 
     #6: 
     Given an array of strings, sort them in the order of increasing lengths. If twos strings
     have the same length, their relative order must be the same in the intial array.
 */
-exports.sortByLength = (strs) => strs.sort((a, b) => a.length === b.length ? 0 : a.length > b.length ? 1 : -1);
+exports.sortByLength = (strs) =>
+	strs.sort((a, b) =>
+		a.length === b.length ? 0 : a.length > b.length ? 1 : -1
+	);
+
+/* 
+    #7: 
+    You are given a string s that consists of only lowercase English letters. If 
+    vowels ('a','e','i','o' and 'u') are given a value of 1 and consonants are given
+    a value of 2, return the sum of all the letters in the input string.
+*/
+exports.countVowelConsonant = (str) => {
+	const newStr = str.toLowerCase();
+	const vowels = ['a', 'e', 'i', 'o', 'u'];
+	const isVowel = (char) => vowels.find((input) => input === char);
+	let sum = 0;
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i];
+		sum += isVowel(char) ? 1 : 2;
+	}
+	return sum;
+};

@@ -15,6 +15,9 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 3](#day-3)
 - [Day 4](#day-4)
 - [Day 5](#day-5)
+- [Day 6](#day-6)
+- [Day 7](#day-7)
+
 
 
 ## Day 1
@@ -150,3 +153,29 @@ My sort function uses a double ternary expression but is the same as an if/ else
     1) a === b return 0 meaning the length is the same don't change original positions
     2) a > b returns 1 meaning a is bigger and b is placed first 
     3) a < b returns -1 meaning b is bigger than a and is placed first
+
+
+
+## Day 7
+
+![Day7 Question](https://i.gyazo.com/f017ce2f5c51ae0be06a229144bc7411.png)
+
+
+#### Answer:
+
+```
+const countVowelConsonant = (str) => {
+	const newStr = str.toLowerCase();
+	const vowels = ['a', 'e', 'i', 'o', 'u'];
+	const isVowel = (char) => vowels.find((input) => input === char);
+	let sum = 0;
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i];
+		sum += isVowel(char) ? 1 : 2;
+	}
+	return sum;
+}
+```
+
+#### Logic:
+We simply need to loop through the string (string[n] can access individual chars) and for check if the current char is a vowel or a consonant. If a vowel add 1 to the sum if not add 2. I created an array of vowels and a helper function to check if a char is in the value array (also could have used Array.includes()).
