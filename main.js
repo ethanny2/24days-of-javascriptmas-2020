@@ -117,13 +117,10 @@ exports.countVowelConsonant = (str) => {
 	return sum;
 };
 
-
 /* 
     #8: 
     See folder spec/day8
 */
-
-
 
 /* 
     #9: 
@@ -137,17 +134,49 @@ exports.countVowelConsonant = (str) => {
 */
 
 exports.sumOddFibonacciNumbers = (num) => {
-    let sumOfOdds = 1; //Start at 1 to account for the first fib num always being odd and 1.
-    let currentFibNum = 1;
-    let previous = 1;
-    let temp;
-    while(num >= currentFibNum){
-        if(currentFibNum % 2 !== 0){
-            sumOfOdds+= currentFibNum;
-        }
-        temp = currentFibNum;
-        currentFibNum += previous;
-        previous = temp;    
-    }
-    return sumOfOdds;
-}
+	let sumOfOdds = 1; //Start at 1 to account for the first fib num always being odd and 1.
+	let currentFibNum = 1;
+	let previous = 1;
+	let temp;
+	while (num >= currentFibNum) {
+		if (currentFibNum % 2 !== 0) {
+			sumOfOdds += currentFibNum;
+		}
+		temp = currentFibNum;
+		currentFibNum += previous;
+		previous = temp;
+	}
+	return sumOfOdds;
+};
+
+/* 
+    #10: 
+    Given an array of integers, find the pair of adjacent elements that
+    has the largest product and return that product.
+
+    Ex: inputArray = [3, 6, -2, -5, 7, 3] 
+    adjacentElementsProduct(inputArray) returns 7*3 = 21
+*/
+exports.adjacentElementsProduct = (inputArray) => {
+	/* Never told how to handle [], and [x] edge cases... */
+	if (inputArray.length <= 0) return 0;
+	if (inputArray.length === 1) return inputArray[0];
+	/*
+        Setting this initially to -1 will not work for edge cases like
+        the array [2,-3] where the largest product is -6. Instead
+        set it reequal 
+    */
+	let largestProd = inputArray[0] * inputArray[1];
+	let leftIdx = 1;
+	let rightIdx = 2;
+	for (let i = 0; i < inputArray.length; i++) {
+		const leftNum = inputArray[leftIdx];
+		const rightNum = inputArray[rightIdx];
+		if (leftNum && rightNum && rightNum * leftNum > largestProd) {
+			largestProd = rightNum * leftNum;
+		}
+		leftIdx++;
+		rightIdx++;
+	}
+	return largestProd;
+};

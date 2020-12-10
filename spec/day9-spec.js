@@ -9,7 +9,7 @@ describe('sumOddFibonacciNumbers()', () => {
         const result = sumOddFibonacciNumbers(num);
 
         // log
-      console.log(`Day 8 result part 1:  sumOddFibonacciNumbers(${num}) = `, result);
+      console.log(`Day 9 result part 1:  sumOddFibonacciNumbers(${num}) = `, result);
         
         // assert
         expect(result).toBe(10);
@@ -23,7 +23,7 @@ describe('sumOddFibonacciNumbers()', () => {
         const result = sumOddFibonacciNumbers(num);
 
         // log
-      console.log(`Day 8 result part 2:  sumOddFibonacciNumbers(${num}) = `, result);
+      console.log(`Day 9 result part 2:  sumOddFibonacciNumbers(${num}) = `, result);
         
         // assert
         expect(result).toBe(1785);
