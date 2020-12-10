@@ -116,3 +116,38 @@ exports.countVowelConsonant = (str) => {
 	}
 	return sum;
 };
+
+
+/* 
+    #8: 
+    See folder spec/day8
+*/
+
+
+
+/* 
+    #9: 
+    Given a positive integer num, return the sum of all odd Fibonacci numbers that are less
+    than or equal to num. The first two numbers in the Fibonacci sequence are 1 and 1. Every
+    subsequent number is the sum of the previous two numbers. First six numbers are 
+    1, 1, 2, 3, 5, 8
+
+    Ex: sumOddFibonacciNums(10) should return 10
+    Ex#2:  sumOddFibonacciNums(1000) should return 1785
+*/
+
+exports.sumOddFibonacciNumbers = (num) => {
+    let sumOfOdds = 1; //Start at 1 to account for the first fib num always being odd and 1.
+    let currentFibNum = 1;
+    let previous = 1;
+    let temp;
+    while(num >= currentFibNum){
+        if(currentFibNum % 2 !== 0){
+            sumOfOdds+= currentFibNum;
+        }
+        temp = currentFibNum;
+        currentFibNum += previous;
+        previous = temp;    
+    }
+    return sumOfOdds;
+}

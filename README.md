@@ -18,6 +18,7 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 6](#day-6)
 - [Day 7](#day-7)
 - [Day 8](#day-8)
+- [Day 9](#day-9)
 
 
 
@@ -203,6 +204,38 @@ dice.addEventListener('click', function(e){
 #### Logic:
 This is primarily testing 3 things; can you get a random number, can you alter the DOM/ use eventListeners
 and can you design a 2 column 3 row layout.
-    1) Random number in JS : Math.floor(Math.random() * max) + 1.  Math.floor() rounds the result down to the nearest whole number. Math.random() returns a num between 0 and 1 exclusive (never quite reaches 0 or 1). Multiplying the result of random with your max will give you a decimal between 0 (not including 0) and max -1. We add the one at the end to account for the fact that it may be rounded down to 0 and to bring the max value able to be returned from this statement is now 1 - [CHOOSEN MAX NUM]
-    2) We use the document object to retrieve one of our HTML nodes as an object and attach a click event listener to it.
-    3) Inside the event listener we generate a random num, and populate the dice with the correct number of .dot divs. For this I opted to fill an empty array with length of generated random number full of .dot div's as strings. Then I join the array converting it back into a string and splitting each index by a space and finally the ${} evaluates that large returned string of all the necessary dots.
+    1. Random number in JS : Math.floor(Math.random() * max) + 1.  Math.floor() rounds the result down to the nearest whole number. Math.random() returns a num between 0 and 1 exclusive (never quite reaches 0 or 1). Multiplying the result of random with your max will give you a decimal between 0 (not including 0) and max -1. We add the one at the end to account for the fact that it may be rounded down to 0 and to bring the max value able to be returned from this statement is now 1 - [CHOOSEN MAX NUM]
+    2. We use the document object to retrieve one of our HTML nodes as an object and attach a click event listener to it.
+    3. Inside the event listener we generate a random num, and populate the dice with the correct number of .dot divs. For this I opted to fill an empty array with length of generated random number full of .dot div's as strings. Then I join the array converting it back into a string and splitting each index by a space and finally the ${} evaluates that large returned string of all the necessary dots.
+
+
+
+## Day 9
+
+![Day9 Question](https://i.gyazo.com/74cd35194038e466856f67c80706e3ac.png)
+
+
+#### Answer:
+
+```
+const sumOddFibonacciNumbers = (num) => {
+    let sumOfOdds = 1; //Start at 1 to account for the first fib num always being odd and 1.
+    let currentFibNum = 1;
+    let previous = 1;
+    let temp;
+    while(num >= currentFibNum){
+        if(currentFibNum % 2 !== 0){
+            sumOfOdds+= currentFibNum;
+        }
+        temp = currentFibNum;
+        currentFibNum += previous;
+        previous = temp;    
+    }
+    return sumOfOdds;
+}
+```
+
+#### Logic:
+At first seeing the words Fibonacci I assumed the easiest solution would be to use some form of recursion since that is the preferred way to get the nth Fibonocci number. Without changing the signature  of the function (aka the parameters and what type of value is returned) I couldn't find a way to make a recursive solution work. The alternative route was to use a while loop and count the fibonacci numbers up from the starting pair (1, 1) and on each new calculation of currentFibNum we check if it is odd, if so add it to the running sum. 
+
+The rest of the body of the while loop just continues the fibonacci sequence by adding (currentFibNum + previous) to get the new fib num and then using the previous value of currentFibNum to set previous.
