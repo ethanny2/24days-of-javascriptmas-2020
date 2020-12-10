@@ -19,6 +19,7 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 7](#day-7)
 - [Day 8](#day-8)
 - [Day 9](#day-9)
+- [Day 10](#day-10)
 
 
 
@@ -239,3 +240,42 @@ const sumOddFibonacciNumbers = (num) => {
 At first seeing the words Fibonacci I assumed the easiest solution would be to use some form of recursion since that is the preferred way to get the nth Fibonocci number. Without changing the signature  of the function (aka the parameters and what type of value is returned) I couldn't find a way to make a recursive solution work. The alternative route was to use a while loop and count the fibonacci numbers up from the starting pair (1, 1) and on each new calculation of currentFibNum we check if it is odd, if so add it to the running sum. 
 
 The rest of the body of the while loop just continues the fibonacci sequence by adding (currentFibNum + previous) to get the new fib num and then using the previous value of currentFibNum to set previous.
+
+
+
+
+
+## Day 10
+
+![Day10 Question](https://i.gyazo.com/8f19ae3631047790f45279df9bff15c7.png)
+
+
+#### Answer:
+
+```
+const adjacentElementsProduct = (inputArray) => {
+	/* Never told how to handle [], and [x] edge cases... */
+	if (inputArray.length <= 0) return 0;
+	if (inputArray.length === 1) return inputArray[0];
+	/*
+        Setting this initially to -1 will not work for edge cases like
+        the array [2,-3] where the largest product is -6.
+    */
+	let largestProd = inputArray[0] * inputArray[1];
+	let leftIdx = 1;
+	let rightIdx = 2;
+	for (let i = 0; i < inputArray.length; i++) {
+		const leftNum = inputArray[leftIdx];
+		const rightNum = inputArray[rightIdx];
+		if (leftNum && rightNum && rightNum * leftNum > largestProd) {
+			largestProd = rightNum * leftNum;
+		}
+		leftIdx++;
+		rightIdx++;
+	}
+	return largestProd;
+};
+```
+
+#### Logic:
+We need to loop through the given input array comparing adjacent elements while regularly checking if inputArray[n] is undefined to see if the loop is done. The question doesn't say what to do for edge cases where the input array is [], or [x]. For these cases I return 0 and x respectively. We have a variable largestProd to keep track of which product is currently the largest. I wanted to initialize this variable to -1 or some large negative number but then realized I couldn't guarantee the inputArray would not look like this [100, -1] meaning there certainly a possiblity that the largest product is a negative number. So I instead opted to set the largestProduct to the product of the first 2 indicies because by that line in the function we already know inputArray's length is at least 2. 
