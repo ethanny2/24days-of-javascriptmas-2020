@@ -180,3 +180,28 @@ exports.adjacentElementsProduct = (inputArray) => {
 	}
 	return largestProd;
 };
+
+/* 
+    #11:
+    You are given an array of integers representing coordinates of obstacles situated
+    in a straight line. Assume that you are jumping from the point with coordinate (index) 0
+    to the right. You are allowed only to make jumps of the same length represented by some integer.
+    Find the minial length of the jump enough to avoid all the obstacles. 
+    (*In other words find the lowest integer not divisible by any element in the array.)
+
+    Ex: inputArray = [5, 3, 6 , 7, 9] avoidObstacles(inputArray) = 4
+*/
+exports.avoidObstacles = (nums) =>{
+    const sorted = nums.sort();
+    let lowestNonDivisibleNum = 2;
+    let position = 0;
+    while(position < nums.length){
+        // Were stopped by obstacle
+        if(nums[position] % lowestNonDivisibleNum === 0){
+            lowestNonDivisibleNum++;
+            position = -1 ;            
+        }
+        position++;
+    }
+    return lowestNonDivisibleNum;
+}

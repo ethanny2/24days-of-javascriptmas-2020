@@ -279,3 +279,34 @@ const adjacentElementsProduct = (inputArray) => {
 
 #### Logic:
 We need to loop through the given input array comparing adjacent elements while regularly checking if inputArray[n] is undefined to see if the loop is done. The question doesn't say what to do for edge cases where the input array is [], or [x]. For these cases I return 0 and x respectively. We have a variable largestProd to keep track of which product is currently the largest. I wanted to initialize this variable to -1 or some large negative number but then realized I couldn't guarantee the inputArray would not look like this [100, -1] meaning there certainly a possiblity that the largest product is a negative number. So I instead opted to set the largestProduct to the product of the first 2 indicies because by that line in the function we already know inputArray's length is at least 2. 
+
+
+
+
+## Day 11
+
+![Day11 Question](https://i.gyazo.com/7302d5e4b00bfcb4e2d6557e83cfd5a1.png)
+
+
+#### Answer:
+
+```
+const avoidObstacles = (nums) => {
+    const sorted = nums.sort();
+    let lowestNonDivisibleNum = 2;
+    let position = 0;
+    while(position < sorted.length){
+        // Were stopped by obstacle
+        if(sorted[position] % lowestNonDivisibleNum === 0){
+            lowestNonDivisibleNum++;
+            position = -1 ;            
+        }
+        position++;
+    }
+    return lowestNonDivisibleNum;
+}
+```
+
+#### Logic:
+The hardest part of this problem is understanding what they are actually asking which is to find the lowest integer not divisible by any element in the array. Since you are required to go through the entire array again even if you encounter one element that is divisible by your current lowest number sorting the array is not actually necessary. When an obstacle is encountered (the if is entered) we increment our lowestNonDivisibleNum and set position = -1 
+so it can be incremented back to 0 and we can start re-checking the loop. 
