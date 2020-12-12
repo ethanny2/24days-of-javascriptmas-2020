@@ -191,17 +191,42 @@ exports.adjacentElementsProduct = (inputArray) => {
 
     Ex: inputArray = [5, 3, 6 , 7, 9] avoidObstacles(inputArray) = 4
 */
-exports.avoidObstacles = (nums) =>{
-    const sorted = nums.sort();
-    let lowestNonDivisibleNum = 2;
-    let position = 0;
-    while(position < nums.length){
-        // Were stopped by obstacle
-        if(nums[position] % lowestNonDivisibleNum === 0){
-            lowestNonDivisibleNum++;
-            position = -1 ;            
-        }
-        position++;
-    }
-    return lowestNonDivisibleNum;
-}
+exports.avoidObstacles = (nums) => {
+	const sorted = nums.sort();
+	let lowestNonDivisibleNum = 2;
+	let position = 0;
+	while (position < nums.length) {
+		// Were stopped by obstacle
+		if (nums[position] % lowestNonDivisibleNum === 0) {
+			lowestNonDivisibleNum++;
+			position = -1;
+		}
+		position++;
+	}
+	return lowestNonDivisibleNum;
+};
+
+/* 
+    #12:
+    Check if a given string is a correct time representation of the 24-hour clock.
+    
+    Ex: time = "13:58" validTime(time) = true
+    Ex2: time = "25:51" validTime(time) = false
+    Ex3: time = "02:76" validTime(time) = false
+*/
+exports.validTime = (time) => {
+	if (time.length !== 5) return false;
+	if (typeof time !== 'string') return false;
+	if (time[0] === '2' && Number(time[1]) > 3) return false;
+
+	const hourTens = Number(time.slice(0, 1)); // 0 - 2
+	const hourOnes = Number(time.slice(1, 2)); // 0 - 9
+	const minuteTens = Number(time.slice(3, 4)); // 0 - 5
+	const minuteOnes = Number(time.slice(4, 5)); // 0 - 9
+	if (hourTens < 0 || hourTens > 2) return false;
+	if (hourOnes < 0 || hourOnes > 9) return false;
+	if (minuteTens < 0 || minuteTens > 5) return false;
+    if (minuteOnes < 0 || minuteOnes > 9) return false;
+    
+    return true;
+};

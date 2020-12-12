@@ -310,3 +310,35 @@ const avoidObstacles = (nums) => {
 #### Logic:
 The hardest part of this problem is understanding what they are actually asking which is to find the lowest integer not divisible by any element in the array. Since you are required to go through the entire array again even if you encounter one element that is divisible by your current lowest number sorting the array is not actually necessary. When an obstacle is encountered (the if is entered) we increment our lowestNonDivisibleNum and set position = -1 
 so it can be incremented back to 0 and we can start re-checking the loop. 
+
+
+## Day 12
+
+![Day12 Question](https://i.gyazo.com/4daf896a44b971a4e0a06b3b47aa8c06.png)
+
+
+#### Answer:
+```
+const validTime = (time) => {
+	if (time.length !== 5) return false;
+	if (typeof time !== 'string') return false;
+	if (time[0] === '2' && Number(time[1]) > 3) return false;
+
+	const hourTens = Number(time.slice(0, 1)); // 0 - 2
+	const hourOnes = Number(time.slice(1, 2)); // 0 - 9
+	const minuteTens = Number(time.slice(3, 4)); // 0 - 5
+	const minuteOnes = Number(time.slice(4, 5)); // 0 - 9
+	if (hourTens < 0 || hourTens > 2) return false;
+	if (hourOnes < 0 || hourOnes > 9) return false;
+	if (minuteTens < 0 || minuteTens > 5) return false;
+    if (minuteOnes < 0 || minuteOnes > 9) return false;
+    
+    return true;
+};
+```
+
+#### Logic:
+There is most likely a better solution to this using regex but I took the brute force approach. Slice the time string to get the tens and ones place of both the hours and the minutes. Check the valid values in each position (e.g. first number can only be between 0 - 2 etc...). If any of the four digits has an invalid value it will return false, otherwise it will return true. The 3 if statements at the top ensure the function returns false under the following 3 conditions
+1) The input string is not 5 characters long meaning it is in the incorrect format
+2) The type of the input is for some reason not a string
+3) An edge case where if the first number is a 2 then the number right next to it can only be 0-3 because the 24 hour clock goes from 00 - 23. 
