@@ -20,6 +20,10 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 8](#day-8)
 - [Day 9](#day-9)
 - [Day 10](#day-10)
+- [Day 11](#day-11)
+- [Day 12](#day-12)
+- [Day 13](#day-13)
+- [Day 14](#day-14)
 
 
 
@@ -342,3 +346,23 @@ There is most likely a better solution to this using regex but I took the brute 
 1) The input string is not 5 characters long meaning it is in the incorrect format
 2) The type of the input is for some reason not a string
 3) An edge case where if the first number is a 2 then the number right next to it can only be 0-3 because the 24 hour clock goes from 00 - 23. 
+
+
+
+## Day 13
+
+![Day13 Question](https://i.gyazo.com/300fb5e64ac803f9464741c5ab37afd1.png)
+
+
+#### Answer:
+```
+const extractEachKth = (nums, index) => {
+		if (index <= 1) return nums;
+		return nums.filter((_, idx) => (idx + 1) % index !== 0);
+};
+```
+
+#### Logic:
+Loop through the given array and for each kth index (denoted by parameter called index) remove that element from the array and start the counting from 0 again to find the next kth element. Finally return the new array with all kth elements removed. For my base case I just made sure any k < -1 would just return the unchanged array
+because there is no good way to implement these cases. 
+For the actual code I filtered the input array using (_, idx) as my callback to indicate that even though you must ask for the callback params in order (ELEMENT, INDEX, ARRAY) (see the callback for Array.filter()...) we don't need access to the actual element in the array just its index position. To account for the kth element being counted starting from 1 and because arrays are 0 based I account for this discrepancy by first adding 1 to the current elements index. If the current index position of the element we are on is divisible by k (meaning it is a kth element) return false and remove it.

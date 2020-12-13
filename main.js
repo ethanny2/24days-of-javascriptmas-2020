@@ -226,7 +226,22 @@ exports.validTime = (time) => {
 	if (hourTens < 0 || hourTens > 2) return false;
 	if (hourOnes < 0 || hourOnes > 9) return false;
 	if (minuteTens < 0 || minuteTens > 5) return false;
-    if (minuteOnes < 0 || minuteOnes > 9) return false;
-    
-    return true;
+	if (minuteOnes < 0 || minuteOnes > 9) return false;
+
+	return true;
+};
+
+/* 
+		#13:
+		Given an array of integers, remove each kth element from it and return
+		the altered array.
+
+		Ex: inputArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] and k = 3
+		     extractEachKth(inputArray, k) = [1, 2, 4, 5, 7, 8, 10]
+*/
+exports.extractEachKth = (nums, index) => {
+		// k = 0 or k = 1 or k is negative just do this for the base case
+		if (index <= 1) return nums;
+		// Account for arrays being 0 indexed (idx + 1)
+		return nums.filter((_, idx) => (idx + 1) % index !== 0);
 };
