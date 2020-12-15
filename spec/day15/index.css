@@ -13,7 +13,7 @@ html{
   background-position: 0px 0px;
   background-repeat: repeat;
   background-size: cover;
-  animation: animate_background 30s linear 0s infinite;
+  animation: animate_background 40s linear 0s infinite;
 }
 
 html,

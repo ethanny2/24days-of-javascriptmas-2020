@@ -24,6 +24,7 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 12](#day-12)
 - [Day 13](#day-13)
 - [Day 14](#day-14)
+- [Day 15](#day-15)
 
 
 
@@ -399,7 +400,7 @@ just compare the numbers.
 ## Day 15
 
 ![Day15 Question](https://i.gyazo.com/8f7f5fa45c8d7d36ed3df984425074ee.png)
-
+![Demo gif](./spec/day15/demo.gif)
 
 #### Answer:
 ```
