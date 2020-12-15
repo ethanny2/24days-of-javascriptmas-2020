@@ -366,3 +366,33 @@ const extractEachKth = (nums, index) => {
 Loop through the given array and for each kth index (denoted by parameter called index) remove that element from the array and start the counting from 0 again to find the next kth element. Finally return the new array with all kth elements removed. For my base case I just made sure any k < -1 would just return the unchanged array
 because there is no good way to implement these cases. 
 For the actual code I filtered the input array using (_, idx) as my callback to indicate that even though you must ask for the callback params in order (ELEMENT, INDEX, ARRAY) (see the callback for Array.filter()...) we don't need access to the actual element in the array just its index position. To account for the kth element being counted starting from 1 and because arrays are 0 based I account for this discrepancy by first adding 1 to the current elements index. If the current index position of the element we are on is divisible by k (meaning it is a kth element) return false and remove it.
+
+
+
+## Day 14
+
+![Day14 Question](https://i.gyazo.com/42208da2f8d460919c33412f1f3cce0a.png)
+
+
+#### Answer:
+```
+exports.arrayMaximalAdjacentDifference = (nums) => {
+	if (nums.length === 0) return nums;
+	if (nums.length === 1) return Math.abs(nums[0]);
+	let largestDiff = -1;
+	nums.forEach((_, idx) => {
+		let left = nums[idx];
+		let right = nums[idx + 1];
+		let curDiff = Math.abs(left - right);
+		if (left && right && curDiff > largestDiff) {
+			largestDiff = curDiff;
+		}
+	});
+	return largestDiff;
+};
+```
+
+#### Logic:
+We need to iterate through the array and compare every adjacent element and calculate the absolute value of their differences. If the currently calculated difference is greater than the intial value (-1 is choosen to start as |x| > -1 always) we place the new highest difference in the largestDiff variable. Using forEach but just for the index position. The if statement in the forEach checks if any of the indicies are out of bounds/undefined, if not
+just compare the numbers. 
+

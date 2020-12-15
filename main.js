@@ -240,8 +240,31 @@ exports.validTime = (time) => {
 		     extractEachKth(inputArray, k) = [1, 2, 4, 5, 7, 8, 10]
 */
 exports.extractEachKth = (nums, index) => {
-		// k = 0 or k = 1 or k is negative just do this for the base case
-		if (index <= 1) return nums;
-		// Account for arrays being 0 indexed (idx + 1)
-		return nums.filter((_, idx) => (idx + 1) % index !== 0);
+	// k = 0 or k = 1 or k is negative just do this for the base case
+	if (index <= 1) return nums;
+	// Account for arrays being 0 indexed (idx + 1)
+	return nums.filter((_, idx) => (idx + 1) % index !== 0);
+};
+
+/* 
+		#14:
+		Given an array of integers, find the maximal absolute difference between
+		any two of its adjacent elements.
+
+		Ex: inputArray = [2, 4, 1, 0] arrayMaximalAdjacentDifference(inputArray) = |4 - 1| = 3
+		Ex#2: inputArray = [2, 9, 1, 0] arrayMaximalAdjacentDifference(inputArray) = |9 - 1| = 8
+*/
+exports.arrayMaximalAdjacentDifference = (nums) => {
+	if (nums.length === 0) return nums;
+	if (nums.length === 1) return Math.abs(nums[0]);
+	let largestDiff = -1;
+	nums.forEach((_, idx) => {
+		let left = nums[idx];
+		let right = nums[idx + 1];
+		let curDiff = Math.abs(left - right);
+		if (left && right && curDiff > largestDiff) {
+			largestDiff = curDiff;
+		}
+	});
+	return largestDiff;
 };
