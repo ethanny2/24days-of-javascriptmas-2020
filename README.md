@@ -396,3 +396,66 @@ exports.arrayMaximalAdjacentDifference = (nums) => {
 We need to iterate through the array and compare every adjacent element and calculate the absolute value of their differences. If the currently calculated difference is greater than the intial value (-1 is choosen to start as |x| > -1 always) we place the new highest difference in the largestDiff variable. Using forEach but just for the index position. The if statement in the forEach checks if any of the indicies are out of bounds/undefined, if not
 just compare the numbers. 
 
+## Day 15
+
+![Day15 Question](https://i.gyazo.com/8f7f5fa45c8d7d36ed3df984425074ee.png)
+
+
+#### Answer:
+```
+const prevButton = document.querySelector('.previous');
+const nextButton = document.querySelector('.next');
+
+let photoIndex = Number(
+	getComputedStyle(document.documentElement).getPropertyValue('--photoIndex')
+); // 0 at start
+const numPhotos = getComputedStyle(document.documentElement).getPropertyValue(
+	'--numPhotos'
+); //5
+
+prevButton.addEventListener('click', function (e) {
+	if (photoIndex > 0) {
+		photoIndex--;
+		document.documentElement.style.setProperty('--photoIndex', photoIndex);
+		fadeButtonOnEnd();
+	}
+});
+
+nextButton.addEventListener('click', function (e) {
+	if (photoIndex < numPhotos - 1) {
+		photoIndex++;
+		document.documentElement.style.setProperty('--photoIndex', photoIndex);
+		fadeButtonOnEnd();
+	}
+});
+
+/* Both buttons should check their state (what index) then determine if they need their opacity lowered */
+function fadeButtonOnEnd() {
+	photoIndex === 0
+		? prevButton.classList.add('end')
+		: prevButton.classList.remove('end');
+	photoIndex === numPhotos - 1
+		? nextButton.classList.add('end')
+		: nextButton.classList.remove('end');
+}
+```
+
+#### Logic:
+We need a way to switch the photos in the .gallery container (all images are in the HTML markup the ones that are not showing are overflowing to the right of the container, we don't see them because of overflow:hidden property). My initial thought would be to just have a container with a single image that I would replace the src attribute on click through JavaScript. Fortunately the way the CSS is set up for this encourages you to go for a mostly CSS solution with a bit of JavaScript. 
+For me I created some CSS variables to keep track of some numbers so I don't have to hard code or calculate the
+the offest needed to show the new photo. Each photo width is 200px with a right margin of 20px. Transforming the X position of gallery by -220px or 220px moves to the previous photo and next photo respectively. My CSS variables use other variables and the calc() functionality to calculate the offset (not hard coded) and the current index I am on. 
+```
+:root{
+  --numPhotos: 5;
+  --photoWidth: 200px;
+  --photoIndex: 0; 
+  --photoOffset: calc(calc(var(--photoWidth) * -1) - 20px);
+}
+.gallery{
+   ...
+   transform: translateX(calc( var(--photoIndex) * var(--photoOffset)));
+   transition: transform 0.5s ease;   
+   ...
+}
+```
+All I simply need to do when a button is clicked (next or prev) is increment the photoIndex variable, then through the magic of CSS variables the new offset is calculated! I added in a transition to make it flow nicely and did a little extra adding a smooth scrolling background image property.

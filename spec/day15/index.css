@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+
+:root{
+  --numPhotos: 5;
+  --photoWidth: 200px;
+  --photoIndex: 0; 
+  --photoOffset: calc(calc(var(--photoWidth) * -1) - 20px);
+}
+
+html{
+  background-image: url(https://atlus.com/smt4a/img/bg/city-bg.jpg);
+  background-position: 0px 0px;
+  background-repeat: repeat;
+  background-size: cover;
+  animation: animate_background 30s linear 0s infinite;
+}
+
+html,
+body {
+  width: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	font-family: 'Playfair Display';
+	display: grid;
+	justify-content: center;
+}
+
+img {
+	width: var(--photoWidth);
+}
+
+.previous,
+.next {
+  width: 35px;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+}
+
+.end {
+	opacity: 0.3;
+}
+
+.container {
+  display: grid;
+  /* left and rigth cols for the arrows/ navigation*/
+	grid-template-columns: 20% 200px 20%;
+	place-content: center;
+}
+
+.gallery-wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+
+.gallery{
+  background:white;
+  transform-style: preserve-3d;
+  display: grid;
+  /* Num photos */
+  grid-template-columns: repeat(var(--numPhotos), auto);
+  /* Can be used to move the elements in gallery aligned in a single row so a new element
+  is showing.*/
+   transform: translateX(calc( var(--photoIndex) * var(--photoOffset)));
+  transition: transform 0.5s ease;   
+}
+
+.card {
+  margin-right: 20px;
+  align-self: center;
+}
+
+
+@keyframes animate_background { 
+  from { 
+      background-position: 0 0;
+  } 
+  to { 
+      background-position: -2400px 0px; 
+      /* Why 2400px???? For smooth animation wrapping but I just hard coded the val*/
+  } 
+}
