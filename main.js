@@ -268,3 +268,30 @@ exports.arrayMaximalAdjacentDifference = (nums) => {
 	});
 	return largestDiff;
 };
+
+/* 
+		#16:
+		Trasnform a given sentence into a new one
+		with dashes between each two consecutive letters
+
+		Ex: input = "aba caba" output is "a-b-a c-a-b-a"
+
+*/
+exports.insertDashes = (str) => {
+	const strArr = str.split('');
+	let dashArr = [];
+	for (let i = 0; i < strArr.length; i++) {
+		const [curChar] = strArr[i];
+		//if space just keep it
+		if (curChar !== ' ') {
+			const nextChar = strArr[i + 1];
+			nextChar && nextChar !== ' '
+				? dashArr.push(curChar, '-')
+				: dashArr.push(curChar);
+		} else {
+			dashArr.push(curChar);
+		}
+	}
+	console.log(dashArr.join(''));
+	return dashArr.join('');
+};

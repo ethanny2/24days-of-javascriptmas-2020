@@ -25,6 +25,7 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 13](#day-13)
 - [Day 14](#day-14)
 - [Day 15](#day-15)
+- [Day 16](#day-15)
 
 
 
@@ -377,7 +378,7 @@ For the actual code I filtered the input array using (_, idx) as my callback to 
 
 #### Answer:
 ```
-exports.arrayMaximalAdjacentDifference = (nums) => {
+const arrayMaximalAdjacentDifference = (nums) => {
 	if (nums.length === 0) return nums;
 	if (nums.length === 1) return Math.abs(nums[0]);
 	let largestDiff = -1;
@@ -460,3 +461,48 @@ the offest needed to show the new photo. Each photo width is 200px with a right 
 }
 ```
 All I simply need to do when a button is clicked (next or prev) is increment the photoIndex variable, then through the magic of CSS variables the new offset is calculated! I added in a transition to make it flow nicely and did a little extra adding a smooth scrolling background image property.
+
+
+
+
+
+
+
+
+
+## Day 16
+
+![Day16 Question](https://i.gyazo.com/b0b21b14e93327b5f10abb7be6497675.png)
+
+
+#### Answer:
+```
+const  insertDashes = (str) => {
+	const strArr = str.split('');
+	let dashArr = [];
+	for (let i = 0; i < strArr.length; i++) {
+		const [curChar] = strArr[i];
+		//if space just keep it
+		if (curChar !== ' ') {
+			const nextChar = strArr[i + 1];
+			nextChar && nextChar !== ' '
+				? dashArr.push(curChar, '-')
+				: dashArr.push(curChar);
+		} else {
+			dashArr.push(curChar);
+		}
+	}
+	console.log(dashArr.join(''));
+	return dashArr.join('');
+};
+
+```
+
+#### Logic:
+Convert to an array iterate through array and for each...
+1) Get char in current index
+2) Check if current char is a space, if so push it into dash array as is
+3) if the curChar is not a space check the next Char in the i + 1 th index
+4) If nextChar exists (not out of bounds) and is not a space we add the curChar with a dash in front of it (note Array.push() takes multiple args)
+5) If nextChar either does not exist (end of string) or if it is a space just push the current Char into
+the dash array it doesn't need dashes because the next char in front is a space or the end of the string.
