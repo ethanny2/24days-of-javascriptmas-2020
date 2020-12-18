@@ -25,7 +25,10 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 13](#day-13)
 - [Day 14](#day-14)
 - [Day 15](#day-15)
-- [Day 16](#day-15)
+- [Day 16](#day-16)
+- [Day 17](#day-17)
+- [Day 18](#day-18)
+
 
 
 
@@ -506,3 +509,39 @@ Convert to an array iterate through array and for each...
 4) If nextChar exists (not out of bounds) and is not a space we add the curChar with a dash in front of it (note Array.push() takes multiple args)
 5) If nextChar either does not exist (end of string) or if it is a space just push the current Char into
 the dash array it doesn't need dashes because the next char in front is a space or the end of the string.
+
+
+
+## Day 17
+
+![Day17 Question](https://i.gyazo.com/9fc24071a6d11a4270a5ac437114f368.png)
+
+
+#### Answer:
+```
+exports.differentSymbolsNaive = (str) =>{
+	let uniqueArr = [];
+	str.split('').forEach(char => {
+	 if(!uniqueArr.includes(char)) uniqueArr.push(char);
+	});
+	return uniqueArr.length;
+}
+```
+
+#### Logic:
+Loop through a string (could have used a for-loop but converted to an array via split('') in order to use forEach()).
+Have a separate array to keep unique chars and only push if the uniqueArray doesn't already have that char within it. We check this via Array.includes().
+
+
+
+## Day 18
+
+![Day18 Question](
+
+
+#### Answer:
+```
+
+```
+
+#### Logic:

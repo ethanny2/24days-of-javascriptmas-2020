@@ -295,3 +295,27 @@ exports.insertDashes = (str) => {
 	console.log(dashArr.join(''));
 	return dashArr.join('');
 };
+
+
+/* 
+		#17:
+		Given a string, find the number of different characters in it.
+
+		Ex: str = "cabca"  differentSymbolsNaive returns 3.
+
+*/
+exports.differentSymbolsNaive = (str) =>{
+	let uniqueArr = [];
+	str.split('').forEach(char => {
+	 if(!uniqueArr.includes(char)) uniqueArr.push(char);
+	});
+	return uniqueArr.length;
+}
+
+
+
+/* 
+		#18:
+		
+
+*/
