@@ -337,3 +337,24 @@ exports.arrayPreviousLess = (nums) => {
 	return answer;
 };
 
+/* 
+		#19:
+		Check weather the given string is a subsequence of the plaintext alphabeta.
+		If a subsequent letter repeats it is should return false.
+
+		Ex: string = "effg"  or string = "cdce", the output should be alphabetSubsequence(string) = false
+		Ex2: string ="ace" or string ="bxz", the outpust should be alphabetSubsequence(string) = true
+*/
+
+exports.alphabetSubsequence = (str) => {
+	// any char always > ""
+	let prevChar = '';
+	for (const curChar of str.split('')) {
+		if (curChar > prevChar) {
+			prevChar = curChar;
+		} else {
+			return false;
+		}
+	}
+	return true;
+};

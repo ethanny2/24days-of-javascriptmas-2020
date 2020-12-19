@@ -561,3 +561,33 @@ const arrayPreviousLess = (nums) => {
 
 #### Logic:
 For each position in the array you need to start another loop and iterate to the left; the first value found to the left of the current index i that is lower than the element inside the array at position arr[i] replaces the element in position i. If there is no lower element or you are at index 0 (starting) replace the value with -1 instead.
+
+
+
+
+## Day 19
+
+![Day19 Question](https://i.gyazo.com/837f1982d158e6c6022d27a89ed44ca1.png)
+
+
+#### Answer:
+```
+const alphabetSubsequence = (str) {
+    // any char always > ''
+	let prevChar = '';
+	for (const curChar of str.split('')) {
+		if (curChar > prevChar) {
+			prevChar = curChar;
+		} else {
+			return false;
+		}
+	}
+	return true;
+}
+```
+
+#### Logic:
+Iterate through each character in the given string by splitting it into an array of characters then looping over that arrray (I choose a for... of loop). Start the local var prevChar = '' as this ensures the first character in any string will always be  > "" in terms of alphabetal/ charCode values. This ensures that 2 things
+1) That the if statement will always enter and set prevChar = curChar to for the first (0th) index 
+2) The function will not return false, as far as we know just examining the first char the string should always be consider sorted.
+After that we compare the current character of the string to the previous one, if the currentChar is not bigger than the previousChar (even if they are equal) the string is not sorted and we return false, otherwise true.
