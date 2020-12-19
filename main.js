@@ -296,7 +296,6 @@ exports.insertDashes = (str) => {
 	return dashArr.join('');
 };
 
-
 /* 
 		#17:
 		Given a string, find the number of different characters in it.
@@ -304,18 +303,37 @@ exports.insertDashes = (str) => {
 		Ex: str = "cabca"  differentSymbolsNaive returns 3.
 
 */
-exports.differentSymbolsNaive = (str) =>{
+exports.differentSymbolsNaive = (str) => {
 	let uniqueArr = [];
-	str.split('').forEach(char => {
-	 if(!uniqueArr.includes(char)) uniqueArr.push(char);
+	str.split('').forEach((char) => {
+		if (!uniqueArr.includes(char)) uniqueArr.push(char);
 	});
 	return uniqueArr.length;
-}
-
-
+};
 
 /* 
 		#18:
-		
+		Given an array of integers , for each position i, search among
+		the previous positions for the last (from the left; meaning the first lowest value)
+		position that contains a smaller value. Store that value at position i in the answer.
+		If no such value can be found, store -1 instead.
 
+		Ex: nums = [3, 5, 2, 4, 5] the output should be [-1, 3, -1, 2, 4]
 */
+
+exports.arrayPreviousLess = (nums) => {
+	const answer = [];
+	nums.forEach((_, index) => {
+		//Look backwards from current position
+		let newLowest = nums[index];
+		for (let i = index; i >= 0; i--) {
+			if (newLowest > nums[i]) {
+				newLowest = nums[i];
+				break;
+			}
+		}
+		newLowest === nums[index] ? answer.push(-1) : answer.push(newLowest);
+	});
+	return answer;
+};
+

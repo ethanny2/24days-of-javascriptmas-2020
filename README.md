@@ -536,12 +536,28 @@ Have a separate array to keep unique chars and only push if the uniqueArray does
 
 ## Day 18
 
-![Day18 Question](
+![Day18 Question](https://i.gyazo.com/692b183b729212d8a84d318206e895ce.png)
 
 
 #### Answer:
 ```
+const arrayPreviousLess = (nums) => {
+	const answer = [];
+	nums.forEach((_, index) => {
+		//Look backwards from current position
+		let newLowest = nums[index];
+		for (let i = index; i >= 0; i--) {
+			if (newLowest > nums[i]) {
+				newLowest = nums[i];
+				break;
+			}
+		}
+		newLowest === nums[index] ? answer.push(-1) : answer.push(newLowest);
+	});
+	return answer;
+};
 
 ```
 
 #### Logic:
+For each position in the array you need to start another loop and iterate to the left; the first value found to the left of the current index i that is lower than the element inside the array at position arr[i] replaces the element in position i. If there is no lower element or you are at index 0 (starting) replace the value with -1 instead.
