@@ -591,3 +591,33 @@ Iterate through each character in the given string by splitting it into an array
 1) That the if statement will always enter and set prevChar = curChar to for the first (0th) index 
 2) The function will not return false, as far as we know just examining the first char the string should always be consider sorted.
 After that we compare the current character of the string to the previous one, if the currentChar is not bigger than the previousChar (even if they are equal) the string is not sorted and we return false, otherwise true.
+
+
+
+
+
+## Day 20
+
+![Day20 Question](https://i.gyazo.com/aa499d47716fa4ff7fbf16f2b356f42f.png)
+
+
+#### Answer:
+```
+const domainType = (domains) => {
+	return domains.map(domain => {
+			switch(domain.slice(domain.lastIndexOf('.')+1)){
+					case 'org':
+					return 'organization';
+					case 'com':
+					return  'commercial';
+					case 'info':
+					return 'information';
+					case 'net':
+					return 'network';
+			}
+	});
+}
+```
+
+#### Logic:
+Map over the array and for find the position of the last '.' char in the string using String.lastIndexOf(''). This method returns the index of the string where the '.' char was found, because the TLD is found after the '.' we add one to this result and then slice the string there. Then a switch was used to check and return the appropriate types.	

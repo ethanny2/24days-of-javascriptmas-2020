@@ -358,3 +358,29 @@ exports.alphabetSubsequence = (str) => {
 	}
 	return true;
 };
+
+/* 
+		#20:
+		A top-level domain is one that goes directly after the last dot in the domain name. Write
+		a function that labels the domains as 'commercial', 'organization', 'network', or 'information'
+		for .com , .org , .net and .info respectively. For the given list of domains return the list of their
+		labels
+
+		Ex:  domains = ["en.wiki.org", "codefights.com", "happy.net", "code.info"]
+		domainType(domains) returns ["organization", "commercial", "network", "information"]
+*/
+
+exports.domainType = (domains) => {
+	return domains.map(domain => {
+			switch(domain.slice(domain.lastIndexOf('.')+1)){
+					case 'org':
+					return 'organization';
+					case 'com':
+					return  'commercial';
+					case 'info':
+					return 'information';
+					case 'net':
+					return 'network';
+			}
+	});
+}
