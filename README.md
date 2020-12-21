@@ -28,9 +28,9 @@ as per [Scrimba](https://scrimba.com/learn/adventcalendar) 's rules.
 - [Day 16](#day-16)
 - [Day 17](#day-17)
 - [Day 18](#day-18)
-
-
-
+- [Day 19](#day-19)
+- [Day 20](#day-20)
+- [Day 21](#day-21)
 
 ## Day 1
 
@@ -621,3 +621,33 @@ const domainType = (domains) => {
 
 #### Logic:
 Map over the array and for find the position of the last '.' char in the string using String.lastIndexOf(''). This method returns the index of the string where the '.' char was found, because the TLD is found after the '.' we add one to this result and then slice the string there. Then a switch was used to check and return the appropriate types.	
+
+
+
+## Day 21
+
+![Day21 Question](https://i.gyazo.com/bc17245d310c408b33b51c0b2ad2bc20.png)
+
+
+#### Answer:
+```
+const sumOfTwo = (nums1, nums2, value) => {
+    let retVal = false;
+    for(let i = 0; i < nums1.length ; i++){
+        let firstElem = nums1[i];
+         for(let j = 0; j < nums2.length ; j++){
+            let secondElem = nums2[j];
+            if(firstElem + secondElem === value) return true;
+        }   
+    }
+    return false;
+}
+
+
+```
+
+#### Logic:
+You need to pick one element from one array, loop through the entirety of the second array checking
+if the first element picked added to any element from the second array adds up to the specified value.
+This is easily done with a nested for loop as opposed to Array.forEach() so I could return from
+within the loop as soon as a pair that matches is found.

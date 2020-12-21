@@ -371,16 +371,36 @@ exports.alphabetSubsequence = (str) => {
 */
 
 exports.domainType = (domains) => {
-	return domains.map(domain => {
-			switch(domain.slice(domain.lastIndexOf('.')+1)){
-					case 'org':
-					return 'organization';
-					case 'com':
-					return  'commercial';
-					case 'info':
-					return 'information';
-					case 'net':
-					return 'network';
-			}
+	return domains.map((domain) => {
+		switch (domain.slice(domain.lastIndexOf('.') + 1)) {
+			case 'org':
+				return 'organization';
+			case 'com':
+				return 'commercial';
+			case 'info':
+				return 'information';
+			case 'net':
+				return 'network';
+		}
 	});
-}
+};
+
+/* 
+		#21:
+		You have two integer arrays, a and b, and an integer target value v. Determine weather or not
+		there is a pair of numbers, where one number is taken from a and the other from b, that can
+		be added together to get a sum of v. Return true if such a pair exists, otherwise return false.
+		
+		Ex: a = [1,2,3] b = [10,20,30,40] and v = 42, the output sumOfTwo(a,b,v) = true
+*/
+exports.sumOfTwo = (nums1, nums2, value) => {
+	let retVal = false;
+	for (let i = 0; i < nums1.length; i++) {
+		let firstElem = nums1[i];
+		for (let j = 0; j < nums2.length; j++) {
+			let secondElem = nums2[j];
+			if (firstElem + secondElem === value) return true;
+		}
+	}
+	return false;
+};
