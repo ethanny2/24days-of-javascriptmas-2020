@@ -404,3 +404,24 @@ exports.sumOfTwo = (nums1, nums2, value) => {
 	}
 	return false;
 };
+
+/* 
+		#22:
+		Given a rectangular matrix and an integer column, return an array containing the elements
+		of the columnth column of the given matrix (the leftmost column is the 0th one).
+
+		EX: matrix =[[1, 1, 1, 2] , [0, 5, 0, 4] , [2, 1, 3, 6]] and column = 2
+		it should return [1,0,3].
+*/
+exports.extractMatrixColumn = (matrix, column) => {
+	/* Return largest possible index in row (if column num doesn't exist) */
+	return matrix.map((row) => {
+		let colNum = column;
+		let insertElem = row[colNum];
+		while (insertElem === undefined) {
+			colNum--;
+			insertElem = row[colNum];
+		}
+		return insertElem;
+	});
+};

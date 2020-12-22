@@ -651,3 +651,33 @@ You need to pick one element from one array, loop through the entirety of the se
 if the first element picked added to any element from the second array adds up to the specified value.
 This is easily done with a nested for loop as opposed to Array.forEach() so I could return from
 within the loop as soon as a pair that matches is found.
+
+
+
+
+## Day 22
+
+![Day22 Question](https://i.gyazo.com/38529050a4e33de9ecdd227d45e0cd3c.png)
+
+
+#### Answer:
+```
+const extractMatrixColumn = (matrix, column) => {
+	/* Return largest possible index in row (if column num doesn't exist) */
+	return matrix.map((row) => {
+		let colNum = column;
+		let insertElem = row[colNum];
+		while (insertElem === undefined) {
+			colNum--;
+			insertElem = row[colNum];
+		}
+		return insertElem;
+	});
+};
+```
+
+#### Logic:
+Loop through the array of arrays  (called a matrix); each inner array is considered the row portion of a 2D array. Within each of those inner arrays (rows) we pull out the specified column num (in our case 2) and try to get the
+2nd element (actually 3rd b/c arrays are 0 based). I used map and returned the result when I found the appropriate column in a row. Of course, if a row is too small to access the specified column I made a small while
+loop instead send the next highest defined column if the specified number does not exist. 
+
