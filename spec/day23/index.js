@@ -44,19 +44,19 @@ tweetArea.addEventListener('keydown', (e) => {
 			e.preventDefault();
 			e.stopPropagation();
 		}
-		remaining <= 20
-			? (counter.style.color = 'red')
-			: (counter.style.color = 'white');
-		//Disable if no more chars
-		if (remaining < 0) {
-			tweetBtn.setAttribute('disabled', true);
-			tweetBtn.classList.add('buttonDisabled');
-		} else {
-			tweetBtn.setAttribute('disabled', true);
-			tweetBtn.classList.remove('buttonDisabled');
-		}
-		counter.textContent = `${remaining}/140`;
 	}
+	remaining <= 20
+		? (counter.style.color = 'red')
+		: (counter.style.color = 'white');
+	//Disable if no more chars
+	if (remaining < 0) {
+		tweetBtn.setAttribute('disabled', true);
+		tweetBtn.classList.add('buttonDisabled');
+	} else {
+		tweetBtn.setAttribute('disabled', true);
+		tweetBtn.classList.remove('buttonDisabled');
+	}
+	counter.textContent = `${remaining}/140`;
 });
 
 /* Current the above code doesn't work if you select chunks of text to cut out or in*/
