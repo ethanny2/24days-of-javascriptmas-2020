@@ -712,3 +712,69 @@ at the length of the text in the textArea to reconcile it with the number counte
 keep track of that state through the local variable called remaining. Doing it in this manner meant in
 a chunk of text was selected and pasted in or deleted the number would not be accurate in order to account for this I created a helper function that returns the string of the selected text each time the keydown event fires. If there
 is selected text I adjust the remaining characters if not calculate as normal.
+
+
+
+## Day 24
+
+![Day24 Question](https://i.gyazo.com/6e1d1993771d3040bf4d9f4d40b30868.png)
+
+
+```
+//HINT: ONLY EDIT THE SPIN() AND STOP() FUNCTIONS
+
+//globals
+var pushed = false //Has the stop button been pushed - false is default
+var targetInt; //The target number to stop the wheel on
+var spinningElem = document.getElementById('spinning'); //The spinning number
+let num = 0;
+//event listener
+document.getElementById("buttonPressed").addEventListener("click", buttonPressed);
+
+//When the stop button is pushed
+function buttonPressed(){
+    pushed = true;
+}
+
+//set the target Int
+function setTargetInt(){
+    var targetElem = document.getElementById('targetNum');
+    targetInt=Math.floor(Math.random() * 101)
+    targetElem.innerHTML = targetInt;
+}
+
+//sleep const
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+
+
+//EDIT THIS FUNCTION
+const spin = async () => {
+    //WRITE YOUR CODE HERE
+    await sleep(75) //Paste this wherever you need to sleep the incrimentor 
+    if(pushed){
+      stop(num); //Trigger this function when the STOP button has been pushed
+    }else{
+      spinningElem.textContent  = ++num;
+      spin();
+    }
+}
+
+//EDIT THIS FUNCTION
+function stop(i){
+    //WRITE YOUR CODE HERE
+    var result = document.getElementById('result'); //display your result message here
+    result.textContent = i === targetInt ? 'You win!' : `Oh no, you lose! Off by ${Math.abs(i- targetInt)}`
+}
+
+
+//main
+setTargetInt();
+spin()
+```
+
+#### Logic:
+This could have easily been implemented using setInterval() (you can also specify the delay) but the value in this exercise is to check if you can use recursion and give it a way to stop based on the global variable for pushed. The sleep function given just returns a promise the resolves after the specified time which we await in our async function.
+On eahc iteration of spin we upate the number and check if the button was pushed.
